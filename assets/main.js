@@ -1,21 +1,36 @@
 const startButton = document.querySelector('#startButton');
 const timeRemaining = document.querySelector('#timeRemaining')
-// timer seconds and textContent
+const answerOptions = document.querySelectorAll('.option')
 let secondsLeft = 60
-timeRemaining.textContent = secondsLeft
+let questionIndex = 0
+// timer seconds and textContent
 
-const answersBank = [
+const answerBank = [
   {
-    option1: 'asdf',
-    option2: 'asdfasdf',
-    option3: 'asdfasdfasdf',
-    option4: 'asdfasdfasdfasdf',
+    option1: 'correct',
+    option2: 'wrong',
+    option3: 'wrong',
+    option4: 'wrong',
   },
   {
-
+    option1: 'correct',
+    option2: 'asdf',
+    option3: 'wrong',
+    option4: 'wrong',
   }
 ]
 
+function startTimer() {
+  timeRemaining.textContent = secondsLeft
+  const quizTimer = setInterval(() => {
+    timeRemaining.textContent = secondsLeft
+    secondsLeft--
+    if (!secondsLeft) {
+      clearInterval(quizTimer);
+      endGame()
+    }
+  }, 1000)
+}
 
 startButton.addEventListener('click', () => {
   const welcomeContainer = document.querySelector('#welcomeContainer')
@@ -25,44 +40,46 @@ startButton.addEventListener('click', () => {
   questionContainer.classList.add('active')
   // run function line 22
   startTimer()
-  runQuiz(answersBank[0])
+  showQuestion()
 })
 
 
 // Countdown timer for the game. Runs endGame() function when time gets to 0
-function startTimer() {
-  const quizTimer = setInterval(() => {
-    secondsLeft--
-    timeRemaining.textContent = secondsLeft
 
-    if (!secondsLeft) {
-      clearInterval(quizTimer);
-      endGame()
+function showQuestion() {
+  const currentQuestion = answerBank[questionIndex]
+  if (currentQuestion) {
+    const { option1, option2, option3, option4 } = currentQuestion
+    const options = [option1, option2, option3, option4]
+
+    // Shuffle the options array to randomize the order
+    for (let i = options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [options[i], options[j]] = [options[j], options[i]];
     }
+    // Assign shuffled options to answer options
+    answerOptions.forEach((option, index) => {
+      option.textContent = options[index];
 
-  }, 1000)
-}
-
-function runQuiz(answersBank) {
-  const answerOptions = document.querySelectorAll('.option')
-
-  const { option1, option2, option3, option4 } = answersBank
-  const options = [option1, option2, option3, option4]
-
-  // Shuffle the options array to randomize the order
-  for (let i = options.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [options[i], options[j]] = [options[j], options[i]];
+      option.addEventListener('click', (event) => {
+        if (event.target.textContent == option1) {
+          // let selection = event.target
+          // selection.classList.add('correct')
+          console.log('correct')
+        } else {
+          console.log('wrong')
+        }
+        setTimeout(() => {
+          questionIndex++
+          showQuestion()
+        },1000);
+      });
+    });
+  } else {
+    endGame()
   }
-  // Assign shuffled options to answer options
-  answerOptions.forEach((option, index) => {
-    option.textContent = options[index];
-  });
-
 }
+
 function endGame() {
-  return console.log('game over')
+  console.log('Game Over');
 }
-
-// right answer run nextQuestion() and plus one to score
-// wrong answer run nextQuestion() and subtract from timer
