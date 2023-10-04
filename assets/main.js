@@ -11,6 +11,9 @@ const answersBank = [
     option3: 'asdfasdfasdf',
     option4: 'asdfasdfasdfasdf',
   },
+  {
+
+  }
 ]
 
 
@@ -46,13 +49,15 @@ function runQuiz(answersBank) {
   const { option1, option2, option3, option4 } = answersBank
   const options = [option1, option2, option3, option4]
 
+  // Shuffle the options array to randomize the order
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  // Assign shuffled options to answer options
   answerOptions.forEach((option, index) => {
     option.textContent = options[index];
-    option.addEventListener('click', () => {
-
-      // console.log('option clicked')
-    })
-  })
+  });
 
 }
 function endGame() {
