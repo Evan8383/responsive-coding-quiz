@@ -24,10 +24,7 @@ body{
   box-shadow: 0 0 30px 15px #517388;
 }
 .welcome-card h1{
-  font-size: 1.5em;
-}
-.welcome-card span{
-  font-size: 1.7rem;
+  font-size: 1.3em;
 }
 .welcome-card span::before{
   content: "\a";
