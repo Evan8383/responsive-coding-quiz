@@ -20,17 +20,6 @@ const answerBank = [
   }
 ]
 
-function startTimer() {
-  timeRemaining.textContent = secondsLeft
-  const quizTimer = setInterval(() => {
-    timeRemaining.textContent = secondsLeft
-    secondsLeft--
-    if (!secondsLeft) {
-      clearInterval(quizTimer);
-      endGame()
-    }
-  }, 1000)
-}
 
 startButton.addEventListener('click', () => {
   const welcomeContainer = document.querySelector('#welcomeContainer')
@@ -43,10 +32,22 @@ startButton.addEventListener('click', () => {
   showQuestion()
 })
 
-
 // Countdown timer for the game. Runs endGame() function when time gets to 0
+function startTimer() {
+  timeRemaining.textContent = secondsLeft
+  const quizTimer = setInterval(() => {
+    timeRemaining.textContent = secondsLeft
+    secondsLeft--
+    if (!secondsLeft) {
+      clearInterval(quizTimer);
+      endGame()
+    }
+  }, 1000)
+}
 
+// Displays current question on the screen. Handles correct and incorrect answers
 function showQuestion() {
+  // references the answerBank array and selects the index based on questionIndex value
   const currentQuestion = answerBank[questionIndex]
   if (currentQuestion) {
     const { option1, option2, option3, option4 } = currentQuestion
@@ -61,18 +62,22 @@ function showQuestion() {
     answerOptions.forEach((option, index) => {
       option.textContent = options[index];
 
+      // handles click event for line items displayed 
       option.addEventListener('click', (event) => {
         if (event.target.textContent == option1) {
-          // let selection = event.target
-          // selection.classList.add('correct')
-          console.log('correct')
+          // TODO: handle correct selections.
+          // ! correct selections should add to the players score
+          // ! correct selections should advance the player to the next question
+
+          setTimeout(() => {
+            questionIndex++
+            showQuestion()
+          },1000);
         } else {
-          console.log('wrong')
+          // TODO: handle incorrect selections
+          // ! wrong selections should subtract time from the clock and show that the answer was wrong
+          // ! wrong answers should not advance the player to the next question
         }
-        setTimeout(() => {
-          questionIndex++
-          showQuestion()
-        },1000);
       });
     });
   } else {
