@@ -7,7 +7,9 @@
 
 body {
   background-color: #172D3B;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* Container holding all elements for the welcome screen */
@@ -71,6 +73,7 @@ body {
   padding: 15px;
   border-radius: 8px;
   background-color: #2C4C60;
+  cursor: pointer;
 }
 
 .welcome-card button::after {
@@ -117,7 +120,8 @@ body {
   background-color: var(--card-background-color);
 }
 .timer{
-  margin: 0
+  margin: 0;
+  width: 100%;
 }
 .question-card ul{
   width: 100%;
@@ -129,4 +133,9 @@ body {
   margin-bottom: 10px;
   background-color: #999999;
   border-radius: var(--card-border-radius);
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+.question-card li:hover{
+  scale: 1.05
 }
