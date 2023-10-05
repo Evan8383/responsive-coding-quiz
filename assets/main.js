@@ -93,15 +93,18 @@ function showQuestion() {
         option.classList.add('correct')
 
         event.stopImmediatePropagation()
-
+        
         setTimeout(() => {
           score++
           questionIndex++
           console.log(score)
           showQuestion()
         }, 300);
-      } else {
-        secondsLeft -= 2
+      } 
+      if (event.target.textContent != answerBank[questionIndex].option1) {
+        event.stopImmediatePropagation()
+
+        secondsLeft = secondsLeft - 2
         option.classList.add('wrong')
       }
     });
