@@ -31,22 +31,20 @@ const answerBank = [
   },
 ]
 
-
 startButton.addEventListener('click', () => {
   const welcomeContainer = document.querySelector('#welcomeContainer')
   welcomeContainer.classList.remove('active')
   // Make the question card visible
   const questionContainer = document.querySelector('#questionContainer')
   questionContainer.classList.add('active')
-  // run function line 22
   startTimer()
   showQuestion()
 })
 
-// Countdown timer for the game. Runs endGame() function when time gets to 0
+let quizTimer
 function startTimer() {
   timeRemaining.textContent = secondsLeft
-  const quizTimer = setInterval(() => {
+  quizTimer = setInterval(() => {
     timeRemaining.textContent = secondsLeft
     secondsLeft--
     if (secondsLeft == 0) {
@@ -55,13 +53,20 @@ function startTimer() {
     }
   }, 1000)
 }
+function stopTimer() {
+  clearInterval(quizTimer);
+}
 
 // Displays current question on the screen. Handles correct and incorrect answers
 
 function showQuestion() {
   // references the answerBank array and selects the index based on questionIndex value
   const currentQuestion = answerBank[questionIndex]
-  if (!currentQuestion) return endGame()
+  if (!currentQuestion) {
+    stopTimer()
+    return endGame()
+  }
+
 
   const { option1, option2, option3, option4, question } = currentQuestion
   const options = [option1, option2, option3, option4]
@@ -88,7 +93,7 @@ function showQuestion() {
         option.classList.add('correct')
 
         event.stopImmediatePropagation()
-        
+
         setTimeout(() => {
           score++
           questionIndex++
