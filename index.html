@@ -32,8 +32,20 @@
   </section>
   <section class="content-container" id="endGameContainer">
     <div class="content-card">
-      <h2>Your score: <span>*score*</span></h2>
+      <h2>Your score: <span id="displayScore"></span></h2>
+      <h3>Enter your initials below to save your score!</h3>
+      <input id='playerInitials' type="text" placeholder="Enter your initials">
+      <button id="saveScoreButton">Save</button>
+      <br>
       <button id="playAgainButton">Play again</button>
+    </div>
+  </section>
+  <section class="content-container active" id="scoreboard">
+    <div class="content-card">
+      <h2>ScoreBoard</h2>
+      <ul class="class-list" id="scoreList">
+        <li></li>
+      </ul>
     </div>
   </section>
 

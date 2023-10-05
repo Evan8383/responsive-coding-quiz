@@ -96,7 +96,7 @@ function showQuestion() {
         option.classList.add('correct')
 
         event.stopImmediatePropagation()
-
+        
         setTimeout(() => {
           score++
           questionIndex++
@@ -106,7 +106,7 @@ function showQuestion() {
       }
       if (event.target.textContent != answerBank[questionIndex].option1) {
         event.stopImmediatePropagation()
-
+        
         secondsLeft = secondsLeft - 2
         option.classList.add('wrong')
       }
@@ -121,13 +121,37 @@ function restartQuiz() {
   secondsLeft = 60
   showQuestion()
   startTimer()
-
+  
 }
+
+const displayScore = document.querySelector('#displayScore')
+const saveScoreButton = document.querySelector('#saveScoreButton')
+const playerInitials = document.querySelector('#playerInitials')
+const scoreboard = document.querySelector('#scoreboard')
+const scoreList = document.querySelector('#scoreList')
+let scoreSaved = false
 
 function endGame() {
   questionContainer.classList.remove('active')
   endGameContainer.classList.add('active')
+  
+  displayScore.textContent = score
+  
+  scoreSaved = false
 
+  saveScoreButton.addEventListener('click', (event) => {
+    if (scoreSaved === true) {
+      alert('Score already saved')
+    } else {
+      event.stopImmediatePropagation()
+      console.log(playerInitials.value)
+      const newScore = document.createElement('li')
+      scoreList.appendChild(newScore)
+      newScore.textContent = `Player: ${playerInitials.value} - Score: ${score}`
+      playerInitials.value = ''
+      scoreSaved = true;
+    }
+  })
 
   playAgainButton.addEventListener('click', restartQuiz)
 }
