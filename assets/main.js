@@ -46,12 +46,12 @@ function startTimer() {
   timeRemaining.textContent = secondsLeft
   quizTimer = setInterval(() => {
     timeRemaining.textContent = secondsLeft
-    // secondsLeft--
+    secondsLeft--
     if (secondsLeft == 0) {
       clearInterval(quizTimer);
       endGame()
     }
-  }, 1000)
+  }, 998)
 }
 function stopTimer() {
   clearInterval(quizTimer);
