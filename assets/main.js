@@ -46,7 +46,7 @@ function startTimer() {
   timeRemaining.textContent = secondsLeft
   quizTimer = setInterval(() => {
     timeRemaining.textContent = secondsLeft
-    secondsLeft--
+    // secondsLeft--
     if (secondsLeft == 0) {
       clearInterval(quizTimer);
       endGame()
@@ -81,14 +81,14 @@ function showQuestion() {
     // displays question and the possible options dynamically based on the answerBank object
     option.textContent = options[index];
     displayedQuestion.textContent = question
-
+    
     option.classList.remove('wrong')
     option.classList.remove('correct')
-
-
+    
+    
     // handles click event for line items displayed 
     option.addEventListener('click', (event) => {
-      if (event.target.textContent === option1) {
+      if (event.target.textContent == answerBank[questionIndex].option1) {
         option.classList.remove('wrong')
         option.classList.add('correct')
 
