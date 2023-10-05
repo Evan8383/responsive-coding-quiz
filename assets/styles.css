@@ -122,10 +122,14 @@ body {
   margin: 0;
   width: 100%;
 }
+.question{
+  width: 100%;
+}
 .question-card ul{
   width: 100%;
   list-style: none;
-  padding: 0
+  padding: 0;
+  margin: 0
 }
 .question-card li{
   padding: 5px;
@@ -138,7 +142,9 @@ body {
 .question-card li:hover{
   scale: 1.05
 }
-.question-card li.correct {
-  background-color: green;
-  scale: 1.1;  
+.question-card li.correct::after {
+  content: '✅';
+}
+.question-card li.wrong::after{
+  content: '❌';
 }
