@@ -12,7 +12,7 @@ body {
 }
 
 /* Container holding all elements for the welcome screen */
-.welcome-container {
+.content-container {
   display: none;
   flex: 1 0 200px;
   flex-wrap: wrap;
@@ -24,11 +24,11 @@ body {
   background-color: #172D3B;
 }
 
-.welcome-container.active {
+.content-container.active {
   display: flex;
 }
 
-.welcome-card {
+.content-card {
   width: var(--card-width);
   border-radius: var(--card-border-radius);
   padding: var(--card-padding);
@@ -36,16 +36,16 @@ body {
   box-shadow: 0 0 30px 15px #517388;
 }
 
-.welcome-card h1 {
+.content-card h1 {
   font-size: 1.3em;
 }
 
-.welcome-card span::before {
+.content-card span::before {
   content: "\a";
   white-space: pre;
 }
 
-.welcome-card button {
+.content-card button {
   border: none;
   padding: 5px 18px;
   font-weight: bold;
@@ -54,7 +54,7 @@ body {
   margin: 10px
 }
 
-.welcome-card button:focus {
+.content-card button:focus {
   outline: none;
   font-size: 15px;
   box-shadow: 0 0 5px 2.5px #517388;
@@ -65,7 +65,7 @@ body {
   border: 0 solid white
 }
 
-.welcome-card button:hover {
+.content-card button:hover {
   font-size: 15px;
   box-shadow: 0 0 5px 2.5px #517388;
   color: white;
@@ -75,21 +75,21 @@ body {
   cursor: pointer;
 }
 
-.welcome-card button::after {
+.content-card button::after {
   position: relative;
   left: 5px;
   content: "➡️";
   transition: all 500ms ease;
 }
 
-.welcome-card button:hover::after {
+.content-card button:hover::after {
   display: inline-block;
   opacity: 100%;
   left: 25px;
   scale: 1.5
 }
 
-.welcome-card button:active {
+.content-card button:active {
   transform: scale(0.98);
 }
 

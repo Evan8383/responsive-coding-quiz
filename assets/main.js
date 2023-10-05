@@ -2,6 +2,11 @@ const startButton = document.querySelector('#startButton');
 const timeRemaining = document.querySelector('#timeRemaining')
 const answerOptions = document.querySelectorAll('.option')
 const displayedQuestion = document.querySelector('#question')
+const welcomeContainer = document.querySelector('#welcomeContainer')
+const questionContainer = document.querySelector('#questionContainer')
+const endGameContainer = document.querySelector('#endGameContainer')
+const playAgainButton = document.querySelector('#playAgainButton')
+
 let secondsLeft = 60
 let questionIndex = 0
 let score = 0
@@ -32,11 +37,8 @@ const answerBank = [
 ]
 
 startButton.addEventListener('click', () => {
-  const welcomeContainer = document.querySelector('#welcomeContainer')
   welcomeContainer.classList.remove('active')
   // Make the question card visible
-  const questionContainer = document.querySelector('#questionContainer')
-  questionContainer.classList.add('active')
   startTimer()
   showQuestion()
 })
@@ -45,9 +47,9 @@ let quizTimer
 function startTimer() {
   timeRemaining.textContent = secondsLeft
   quizTimer = setInterval(() => {
-    timeRemaining.textContent = secondsLeft
     secondsLeft--
-    if (secondsLeft == 0) {
+    timeRemaining.textContent = secondsLeft
+    if (secondsLeft <= 0) {
       clearInterval(quizTimer);
       endGame()
     }
@@ -61,6 +63,7 @@ function stopTimer() {
 
 function showQuestion() {
   // references the answerBank array and selects the index based on questionIndex value
+  questionContainer.classList.add('active')
   const currentQuestion = answerBank[questionIndex]
   if (!currentQuestion) {
     stopTimer()
@@ -81,11 +84,11 @@ function showQuestion() {
     // displays question and the possible options dynamically based on the answerBank object
     option.textContent = options[index];
     displayedQuestion.textContent = question
-    
+
     option.classList.remove('wrong')
     option.classList.remove('correct')
-    
-    
+
+
     // handles click event for line items displayed 
     option.addEventListener('click', (event) => {
       if (event.target.textContent == answerBank[questionIndex].option1) {
@@ -93,14 +96,14 @@ function showQuestion() {
         option.classList.add('correct')
 
         event.stopImmediatePropagation()
-        
+
         setTimeout(() => {
           score++
           questionIndex++
           console.log(score)
           showQuestion()
         }, 300);
-      } 
+      }
       if (event.target.textContent != answerBank[questionIndex].option1) {
         event.stopImmediatePropagation()
 
@@ -111,7 +114,20 @@ function showQuestion() {
   });
 }
 
+function restartQuiz() {
+  endGameContainer.classList.remove('active')
+  score = 0
+  questionIndex = 0
+  secondsLeft = 60
+  showQuestion()
+  startTimer()
+
+}
+
 function endGame() {
-  console.log(score)
-  console.log('Game Over');
+  questionContainer.classList.remove('active')
+  endGameContainer.classList.add('active')
+
+
+  playAgainButton.addEventListener('click', restartQuiz)
 }
