@@ -18,6 +18,8 @@ const playerInitials = document.querySelector('#playerInitials')
 const scoreboard = document.querySelector('#scoreboard')
 const scoreList = document.querySelector('#scoreList')
 let scoreSaved = false
+// open scoreboard buttons
+
 
 const answerBank = [
   {
@@ -117,7 +119,6 @@ function showQuestion() {
     });
   });
 }
-
 function restartQuiz() {
   endGameContainer.classList.remove('active')
   score = 0
@@ -132,7 +133,27 @@ function endGame() {
   displayScore.textContent = score
   scoreSaved = false
 }
+// Navigate to scoreboard
+function goToScoreboard() {
+  welcomeContainer.classList.remove('active')
+  endGameContainer.classList.remove('active')
+  scoreboard.classList.add('active')
+}
+const goToScoreboardBtn = document.querySelectorAll('.goToScoreboardBtn')
+goToScoreboardBtn.forEach(button => {
+  button.addEventListener('click', goToScoreboard)
+})
 
+// Navigate to menu 
+function goToMenu() {
+  endGameContainer.classList.remove('active')
+  scoreboard.classList.remove('active')
+  welcomeContainer.classList.add('active')
+}
+const goToMenuBtn = document.querySelectorAll('.goToMenuBtn')
+goToMenuBtn.forEach(button => {
+  button.addEventListener('click', goToMenu)
+})
 
 saveScoreButton.addEventListener('click', (event) => {
   if (scoreSaved === true) {
@@ -148,4 +169,6 @@ saveScoreButton.addEventListener('click', (event) => {
     scoreSaved = true;
   }
 })
+
 playAgainButton.addEventListener('click', restartQuiz)
+endGame()
