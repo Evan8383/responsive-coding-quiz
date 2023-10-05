@@ -10,6 +10,8 @@
 </head>
 
 <body>
+
+  <!-- Main Menu -->
   <section class="content-container active" id="welcomeContainer">
     <div class="content-card">
       <h1>Welcome to the Interactive <span>Coding Quiz!</span></h1>
@@ -18,18 +20,23 @@
       </div>
     </div>
   </section>
+
+  <!-- Question Section -->
   <section class="question-container" id="questionContainer">
     <div class="question-card" id="questionCard">
       <h2 class="timer">Time Remaining: <span id="timeRemaining"></span>s</h2>
-      <h3 class="question" id="question"><h3>
-      <ul class="option-list" id="optionList">
-        <li class="option"></li>
-        <li class="option"></li>
-        <li class="option"></li>
-        <li class="option"></li>
-      </ul>
+      <h3 class="question" id="question">
+        <h3>
+          <ul class="option-list" id="optionList">
+            <li class="option"></li>
+            <li class="option"></li>
+            <li class="option"></li>
+            <li class="option"></li>
+          </ul>
     </div>
   </section>
+
+  <!-- End Game Screen -->
   <section class="content-container" id="endGameContainer">
     <div class="content-card">
       <h2>Your score: <span id="displayScore"></span></h2>
@@ -40,11 +47,12 @@
       <button id="playAgainButton">Play again</button>
     </div>
   </section>
+
+  <!-- Scoreboard -->
   <section class="content-container active" id="scoreboard">
     <div class="content-card">
       <h2>ScoreBoard</h2>
-      <ul class="class-list" id="scoreList">
-        <li></li>
+      <ul class="score-list" id="scoreList">
       </ul>
     </div>
   </section>
@@ -54,4 +62,3 @@
 </body>
 
 </html>
-
