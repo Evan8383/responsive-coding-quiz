@@ -16,6 +16,7 @@ const saveScoreButton = document.querySelector('#saveScoreButton')
 const clearScoreboardBtn = document.querySelector('#clearScoreboardBtn')
 const goToScoreboardBtn = document.querySelectorAll('.goToScoreboardBtn')
 const goToMenuBtn = document.querySelectorAll('.goToMenuBtn')
+const quitButton = document.querySelector('#quitButton')
 
 const scoreList = document.querySelector('#scoreList')
 
@@ -52,9 +53,11 @@ const answerBank = [
 
 function startTimer() {
   timeRemaining.textContent = secondsLeft
+  clearInterval(quizTimer)
   quizTimer = setInterval(() => {
     secondsLeft--
     timeRemaining.textContent = secondsLeft
+    console.log(secondsLeft)
     if (secondsLeft <= 0) {
       clearInterval(quizTimer);
       endGame()
@@ -71,9 +74,9 @@ function restartQuiz() {
   questionIndex = 0
   secondsLeft = 60
   showQuestion()
-  startTimer()
 }
 function endGame() {
+  stopTimer()
   gameOver = true
   questionContainer.classList.remove('active')
   endGameContainer.classList.add('active')
@@ -96,10 +99,9 @@ function showQuestion() {
   questionContainer.classList.add('active')
   const currentQuestion = answerBank[questionIndex]
   if (!currentQuestion) {
-    stopTimer()
-    return endGame()
+    endGame()
   }
-
+  startTimer()
   const { option1, option2, option3, option4, question } = currentQuestion
   const options = [option1, option2, option3, option4]
 
@@ -171,14 +173,11 @@ function clearScoreboard() {
   scoreList.innerHTML = ''
   localStorage.clear('playerScore')
 }
-
 startButton.addEventListener('click', () => {
   welcomeContainer.classList.remove('active')
   if (gameOver) {
     restartQuiz()
   }
-  // Make the question card visible
-  startTimer()
   showQuestion()
 })
 clearScoreboardBtn.addEventListener('click', () => {
@@ -192,3 +191,4 @@ goToMenuBtn.forEach(button => {
 })
 saveScoreButton.addEventListener('click', saveScore)
 playAgainButton.addEventListener('click', restartQuiz)
+quitButton.addEventListener('click', endGame)
