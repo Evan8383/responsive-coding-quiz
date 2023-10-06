@@ -98,7 +98,7 @@ function showQuestion() {
   questionContainer.classList.add('active')
   const currentQuestion = answerBank[questionIndex]
   if (!currentQuestion) {
-    endGame()
+    return endGame()
   }
   startTimer()
   const { option1, option2, option3, option4, question } = currentQuestion
