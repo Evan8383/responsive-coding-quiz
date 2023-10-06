@@ -22,6 +22,7 @@ let questionIndex = 0;
 let score = 0;
 let quizTimer;
 let scoreSaved = false
+let gameOver = false
 
 const answerBank = [
   {
@@ -63,6 +64,7 @@ function stopTimer() {
 }
 function restartQuiz() {
   endGameContainer.classList.remove('active')
+  gameOver = false
   score = 0
   questionIndex = 0
   secondsLeft = 60
@@ -70,6 +72,7 @@ function restartQuiz() {
   startTimer()
 }
 function endGame() {
+  gameOver = true
   questionContainer.classList.remove('active')
   endGameContainer.classList.add('active')
   displayScore.textContent = score
@@ -93,10 +96,10 @@ function showQuestion() {
     stopTimer()
     return endGame()
   }
-  
+
   const { option1, option2, option3, option4, question } = currentQuestion
   const options = [option1, option2, option3, option4]
-  
+
   // Shuffle the options array to randomize the order
   for (let i = options.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -107,18 +110,18 @@ function showQuestion() {
     // displays question and the possible options dynamically based on the answerBank object
     option.textContent = options[index];
     displayedQuestion.textContent = question
-    
+
     option.classList.remove('wrong')
     option.classList.remove('correct')
-    
+
     // handles click event for line items displayed 
     option.addEventListener('click', (event) => {
       if (event.target.textContent == answerBank[questionIndex].option1) {
         option.classList.remove('wrong')
         option.classList.add('correct')
-        
+
         event.stopImmediatePropagation()
-        
+
         setTimeout(() => {
           score++
           questionIndex++
@@ -128,14 +131,14 @@ function showQuestion() {
       }
       if (event.target.textContent != answerBank[questionIndex].option1) {
         event.stopImmediatePropagation()
-        
+
         secondsLeft = secondsLeft - 2
         option.classList.add('wrong')
       }
     });
   });
 }
-function saveScore(){
+function saveScore() {
   if (scoreSaved === true) {
     playerInitials.value = ''
     alert('Score already saved')
@@ -148,13 +151,16 @@ function saveScore(){
     scoreSaved = true;
     document.querySelector('#scoreSavedAlert').textContent = "Score saved"
   }
-  setTimeout(()=>{
+  setTimeout(() => {
     document.querySelector('#scoreSavedAlert').textContent = ""
   }, 2500)
 }
 
 startButton.addEventListener('click', () => {
   welcomeContainer.classList.remove('active')
+  if (gameOver) {
+    restartQuiz()
+  }
   // Make the question card visible
   startTimer()
   showQuestion()
