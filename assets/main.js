@@ -82,6 +82,7 @@ function goToScoreboard() {
   welcomeContainer.classList.remove('active')
   endGameContainer.classList.remove('active')
   scoreboard.classList.add('active')
+
 }
 function goToMenu() {
   endGameContainer.classList.remove('active')
@@ -125,7 +126,6 @@ function showQuestion() {
         setTimeout(() => {
           score++
           questionIndex++
-          console.log(score)
           showQuestion()
         }, 300);
       }
@@ -138,18 +138,23 @@ function showQuestion() {
     });
   });
 }
+// TODO: create a way to save scoreboard contents to memory
+// TODO: create a renderScoreboard function that gets and displays the scoreboard when ever goToScoreboard is invoked.
 function saveScore() {
   if (scoreSaved === true) {
     playerInitials.value = ''
     alert('Score already saved')
   } else {
-    event.stopImmediatePropagation()
+    // event.stopImmediatePropagation()
     const newScoreElement = document.createElement('li')
     scoreList.appendChild(newScoreElement)
     newScoreElement.textContent = `Player: ${playerInitials.value} - Score: ${score}`
+    // let savedScoreValue = newScoreElement.textContent
+    // console.log(savedScoreValue)
     playerInitials.value = ''
     scoreSaved = true;
     document.querySelector('#scoreSavedAlert').textContent = "Score saved"
+    // localStorage.setItem('playerScore', savedScoreValue)
   }
   setTimeout(() => {
     document.querySelector('#scoreSavedAlert').textContent = ""
