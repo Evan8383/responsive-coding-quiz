@@ -13,7 +13,9 @@ const displayedQuestion = document.querySelector('#question');
 const playAgainButton = document.querySelector('#playAgainButton');
 const startButton = document.querySelector('#startButton');
 const saveScoreButton = document.querySelector('#saveScoreButton')
-
+const clearScoreboardBtn = document.querySelector('#clearScoreboardBtn')
+const goToScoreboardBtn = document.querySelectorAll('.goToScoreboardBtn')
+const goToMenuBtn = document.querySelectorAll('.goToMenuBtn')
 
 const scoreList = document.querySelector('#scoreList')
 
@@ -82,7 +84,7 @@ function goToScoreboard() {
   welcomeContainer.classList.remove('active')
   endGameContainer.classList.remove('active')
   scoreboard.classList.add('active')
-
+  renderScore()
 }
 function goToMenu() {
   endGameContainer.classList.remove('active')
@@ -131,15 +133,18 @@ function showQuestion() {
       }
       if (event.target.textContent != answerBank[questionIndex].option1) {
         event.stopImmediatePropagation()
-
-        secondsLeft = secondsLeft - 2
+        score
+        secondsLeft = secondsLeft - 10
         option.classList.add('wrong')
       }
     });
   });
 }
-// TODO: create a way to save scoreboard contents to memory
-// TODO: create a renderScoreboard function that gets and displays the scoreboard when ever goToScoreboard is invoked.
+function renderScore() {
+  const playerScore = localStorage.getItem('playerScore')
+  console.log(playerScore)
+  scoreList.innerHTML = playerScore
+}
 function saveScore() {
   if (scoreSaved === true) {
     playerInitials.value = ''
@@ -149,16 +154,22 @@ function saveScore() {
     const newScoreElement = document.createElement('li')
     scoreList.appendChild(newScoreElement)
     newScoreElement.textContent = `Player: ${playerInitials.value} - Score: ${score}`
-    // let savedScoreValue = newScoreElement.textContent
-    // console.log(savedScoreValue)
     playerInitials.value = ''
-    scoreSaved = true;
+
     document.querySelector('#scoreSavedAlert').textContent = "Score saved"
-    // localStorage.setItem('playerScore', savedScoreValue)
+
+    localStorage.setItem('playerScore', scoreList.innerHTML)
+
+    scoreSaved = true;
   }
   setTimeout(() => {
     document.querySelector('#scoreSavedAlert').textContent = ""
   }, 2500)
+
+}
+function clearScoreboard() {
+  scoreList.innerHTML = ''
+  localStorage.clear('playerScore')
 }
 
 startButton.addEventListener('click', () => {
@@ -170,17 +181,14 @@ startButton.addEventListener('click', () => {
   startTimer()
   showQuestion()
 })
-const goToScoreboardBtn = document.querySelectorAll('.goToScoreboardBtn')
+clearScoreboardBtn.addEventListener('click', () => {
+  return confirm('Are you sure you want to clear the scoreboard?') ? clearScoreboard() : console.log('did not clear score')
+})
 goToScoreboardBtn.forEach(button => {
   button.addEventListener('click', goToScoreboard)
 })
-
-// Navigate to menu 
-const goToMenuBtn = document.querySelectorAll('.goToMenuBtn')
 goToMenuBtn.forEach(button => {
   button.addEventListener('click', goToMenu)
 })
-
 saveScoreButton.addEventListener('click', saveScore)
-
 playAgainButton.addEventListener('click', restartQuiz)
