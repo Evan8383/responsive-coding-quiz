@@ -2,14 +2,16 @@
 
 A simple interactive quiz game built with HTML, CSS, and JavaScript.
 
+Question references at the bottom of the README!
 
 ## Table of Contents
-- [Links](#Links)
+- [Screenshots](#screenshots)
+- [Links](#links)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Usage](#usage)
-- [Screenshots](#screenshots)
 - [Author](#author)
+- [References](#references)
 - [License](#license)
 
 ## Screenshots
@@ -18,8 +20,6 @@ A simple interactive quiz game built with HTML, CSS, and JavaScript.
 ![Screenshot 2](./assets/127.0.0.1_5500_index.html%20(2).png)
 ![Screenshot 3](./assets/127.0.0.1_5500_index.html%20(3).png)
 ![Screenshot 4](./assets/127.0.0.1_5500_index.html%20(4).png)
-
-
 
 ## Links
 
@@ -55,13 +55,12 @@ This web application provides a coding quiz game where users can answer question
 
 7. View the scoreboard to see your saved scores.
 
-## Screenshots
-
-Include screenshots of your application here to give users a visual representation of the game.
-
 ## Author
 
 - [Evan Bennett](https://github.com/evan8383)
+
+## References
+Some questions were used from https://www.interviewbit.com/javascript-mcq/
 
 ## License
 
