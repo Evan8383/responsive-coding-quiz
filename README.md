@@ -5,14 +5,20 @@ A simple interactive quiz game built with HTML, CSS, and JavaScript.
 Question references at the bottom of the README!
 
 ## Table of Contents
-- [Screenshots](#screenshots)
 - [Links](#links)
+- [Screenshots](#screenshots)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Usage](#usage)
 - [Author](#author)
 - [References](#references)
 - [License](#license)
+
+## Links
+
+Repo: https://github.com/Evan8383/responsive-coding-quiz
+
+Live Page: https://evan8383.github.io/responsive-coding-quiz/
 
 ## Screenshots
 
@@ -21,11 +27,6 @@ Question references at the bottom of the README!
 ![Screenshot 3](./assets/127.0.0.1_5500_index.html%20(3).png)
 ![Screenshot 4](./assets/127.0.0.1_5500_index.html%20(4).png)
 
-## Links
-
-Repo: https://github.com/Evan8383/responsive-coding-quiz
-
-Live Page: https://evan8383.github.io/responsive-coding-quiz/
 
 ## Introduction
 
