@@ -57,7 +57,6 @@ function startTimer() {
   quizTimer = setInterval(() => {
     secondsLeft--
     timeRemaining.textContent = secondsLeft
-    console.log(secondsLeft)
     if (secondsLeft <= 0) {
       clearInterval(quizTimer);
       endGame()
