@@ -189,6 +189,13 @@ goToScoreboardBtn.forEach(button => {
 goToMenuBtn.forEach(button => {
   button.addEventListener('click', goToMenu)
 })
-saveScoreButton.addEventListener('click', saveScore)
+saveScoreButton.addEventListener('click', ()=>{
+  if (playerInitials.value == '' && scoreSaved == false){
+    alert('Field cannot be empty')
+  } else {
+    saveScore()
+  } 
+})
+
 playAgainButton.addEventListener('click', restartQuiz)
 quitButton.addEventListener('click', endGame)
