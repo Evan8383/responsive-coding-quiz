@@ -56,6 +56,13 @@ const answerBank = [
     option3: 'Gives a warning',
     option4: 'None of the above',
   },
+  {
+    question: "What is Anthony's favorite color?",
+    option1: 'Lemon Chiffon',
+    option2: 'Not Lemon Chiffon',
+    option3: 'Gin',
+    option4: 'Red'
+  },
 ]
 
 function startTimer() {
@@ -164,7 +171,7 @@ function saveScore() {
     newScoreElement.textContent = `Player: ${playerInitials.value} - Score: ${score}`
     playerInitials.value = ''
 
-    document.querySelector('#scoreSavedAlert').textContent = "Score saved"
+    document.querySelector('#scoreSavedAlert').textContent = "Score saved (▀̿Ĺ̯▀̿ ̿)"
 
     localStorage.setItem('playerScore', scoreList.innerHTML)
 

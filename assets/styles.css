@@ -35,6 +35,22 @@ body {
   background-color: var(--card-background-color);
   box-shadow: 0 0 30px 15px #517388;
 }
+.content-card input {
+  border: none;
+  padding: 5px 15px;
+  background-color: #777777; 
+  border-radius: var(--card-border-radius);
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
+  border: 2px solid #172D3B
+  
+}
+.content-card input::placeholder{
+  color: white;
+  text-align: center;
+  opacity: 85%;
+}
 
 .content-card h1 {
   font-size: 1.3em;
@@ -92,7 +108,9 @@ body {
 .content-card button:active {
   transform: scale(0.98);
 }
-
+.content-card p {
+  font-weight: bolder;
+}
 /* Question Container */
 .question-container{
   display: none;
@@ -118,6 +136,55 @@ body {
   padding: var(--card-padding);
   background-color: var(--card-background-color);
 }
+
+.question-card button {
+  border: none;
+  padding: 5px 18px;
+  font-weight: bold;
+  background: none;
+  transition: all 300ms ease-in-out;
+  margin: 10px
+}
+
+.question-card button:focus {
+  outline: none;
+  font-size: 15px;
+  box-shadow: 0 0 5px 2.5px #517388;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #2C4C60;
+  border: 0 solid white
+}
+
+.question-card button:hover {
+  font-size: 15px;
+  box-shadow: 0 0 5px 2.5px #517388;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #2C4C60;
+  cursor: pointer;
+}
+
+.question-card button::after {
+  position: relative;
+  left: 5px;
+  content: "➡️";
+  transition: all 500ms ease;
+}
+
+.question-card button:hover::after {
+  display: inline-block;
+  opacity: 100%;
+  left: 25px;
+  scale: 1.5
+}
+
+.question-card button:active {
+  transform: scale(0.98);
+}
+
 .timer{
   margin: 0;
   width: 100%;
@@ -138,6 +205,7 @@ body {
   border-radius: var(--card-border-radius);
   cursor: pointer;
   transition: all 200ms ease-in;
+  width: 300px
 }
 .question-card li:hover{
   scale: 1.05
@@ -151,5 +219,6 @@ body {
 .score-list{
   list-style: none;
   padding: 0;
-  margin: 0
+  margin: 0;
+  font-weight: bolder;
 }
