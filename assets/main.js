@@ -61,7 +61,7 @@ const answerBank = [
     option1: 'Lemon Chiffon',
     option2: 'Not Lemon Chiffon',
     option3: 'Gin',
-    option4: 'Red'
+    option4: 'Heliotrope'
   },
 ]
 
